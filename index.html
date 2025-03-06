@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Text Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Container utama */
+.container1 {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Input teks */
+textarea {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Tombol */
+button {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Container hasil */
+#result {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    overflow-y: auto;
+    background: white;
+    box-sizing: border-box;
+}
+
+/* Item hasil */
+.result-item {
+    display: flex;
+    align-items: center; /* Pastikan sejajar */
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Input hasil teks */
+.result-item input {
+    flex: 1;
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+    box-sizing: border-box;
+    height: 35px; /* Samakan dengan tombol */
+}
+
+/* Tombol Copy */
+.copybutton {
+    height: 35px; /* Samakan dengan input */
+    width: 70px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    margin-top: -1px;
+    cursor: pointer;
+    border-radius: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Pastikan teks di tengah */
+    padding: 0;
+}
+
+
+.copybutton:hover {
+    background-color: #0056b3;
+}
+
+/* Load More Button */
+.loadmore {
+    margin-top: 10px;
+}
+/* Layar loading */
+#loading-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin-top: -30px;
+    margin-left: -17px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 0.95s forwards 0.95s; /* Hilang setelah 0.95 detik */
+}
+
+/* Animasi menghilangkan loading */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.loader {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 5px solid rgb(175,220,227);
+    border-top: 5px solid #fff;
+    animation: spin 0.55s linear infinite;
+}
+
+/* Animasi putaran */
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+    </style>
+    <body>
+        <div id="loading-screen">
+          <div class="loader"></div>
+            </div>
+<div class="container1">
+    <textarea id="english-text" placeholder="Masukkan teks..."></textarea>
+    <button onclick="generateFancy()">Generate Fancy</button>
+
+    <div id="result">
+        <div class="result-item">
+            <input type="text" value="Hasil teks di sini" readonly>
+            <button class="copybutton">Copy</button>
+        </div>
+    </div>
+
+    <button class="loadmore">Load More</button>
+</div>
+
+
+    <script>
+        var reverseIsDisabled = false;
+        var ct = 0; // Deklarasi variabel ct
+
+        function backward(text) {
+            return text.split("").reverse().join(""); 
+        }
+
+        function wrapInSymbols(text, number) {
+            return randomSymbols(number) + " " + text + " " + randomSymbols(number);
+        }
+
+        function firework(text) {
+            return text.split("").join("҉") + "҉";
+        }
+
+        function thickBlockFramed(text) {
+            return text.replace(/([^\s])/g, "【$1】");
+        }
+
+        function applyCharMap(map, text) {
+            let out = "";
+            for (let c of text.split("")) {
+                if (map[c] !== undefined) out += map[c];
+                else if (map[c.toLowerCase()] !== undefined) out += map[c.toLowerCase()];
+                else out += c;
+            }
+            return out;
+        }
+
+        function flipText(text) {
+            const map = {
+                a: "ɐ", b: "q", c: "ɔ", d: "p", e: "ǝ", f: "ɟ", g: "ɓ", h: "ɥ",
+                i: "ı", j: "ɾ", k: "ʞ", l: "l", m: "ɯ", n: "u", r: "ɹ", t: "ʇ",
+                v: "ʌ", w: "ʍ", y: "ʎ", A: "∀", B: "ᙠ", C: "Ɔ", D: "ᗡ", E: "Ǝ",
+                F: "Ⅎ", G: "⅁", J: "ſ", K: "⋊", L: "˥", M: "W", P: "Ԁ", Q: "Ό",
+                R: "ᴚ", T: "⊥", U: "∩", V: "Λ", Y: "⅄"
+            };
+
+            return text.split("").map(char => map[char] || char).reverse().join("");
+        }
+
+        function scriptify(text) {
+            var map = {
+                "A": "𝒜", "B": "ℬ", "C": "𝒞", "D": "𝒟", "E": "ℰ", "F": "ℱ", 
+                "G": "𝒢", "H": "ℋ", "I": "ℐ", "J": "𝒥", "K": "𝒦", "L": "ℒ", 
+                "M": "ℳ", "N": "𝒩", "O": "𝒪", "P": "𝒫", "Q": "𝒬", "R": "ℛ", 
+                "S": "𝒮", "T": "𝒯", "U": "𝒰", "V": "𝒱", "W": "𝒲", "X": "𝒳", 
+                "Y": "𝒴", "Z": "𝒵"
+            };
+
+            return text.split("").map(char => map[char] || char).join("");
+        }
+
+        function fullCrazy(text) {
+            if (text.trim() === "") return "";
+            return randomSymbols(2) + " " + crazifyText(text) + " " + randomSymbols(2);
+        }
+
+        function crazifyText(text) {
+            const crazyMap = {
+                "a": "α", "b": "в", "c": "¢", "d": "∂", "e": "є", "f": "ғ", "g": "ɢ",
+                "h": "н", "i": "ι", "j": "נ", "k": "к", "l": "ℓ", "m": "м", "n": "η",
+                "o": "σ", "p": "ρ", "q": "φ", "r": "я", "s": "ѕ", "t": "т", "u": "υ",
+                "v": "ν", "w": "ω", "x": "χ", "y": "у", "z": "z"
+            };
+            return text.split("").map(char => crazyMap[char.toLowerCase()] || char).join("");
+        }
+
+        function randomElement(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function randomSymbols(n) {
+            var symbols = ["ꕢ", "ꗚ", "☜", "✌", "✋", "✊", "⛵", "ൠ", "✌", "ඏ"];
+            return Array.from({ length: n }, () => randomElement(symbols)).join("");
+        }
+
+function generateFancy() {
+    var text = $("#english-text").val();
+    var result = flipText(text);
+    var finalRes = result.split('\n\n');
+
+    $("#result").empty();
+    finalRes.forEach((vl, inx) => {
+        $("#result").append(`
+            <div class="result-item">
+                <input type="text" value="${vl}" id="copy_${inx}" readonly>
+                <button class="copybutton" data-clipboard-target="#copy_${inx}">Copy</button>
+            </div>
+        `);
+    });
+
+    new ClipboardJS('.copybutton');
+}
+
+        
+
+$(".loadmore").click(function() {
+    $(this).html('Loading...');
+    var text = $.trim($("#english-text").val()) || 'Preview Text';
+    var that = $(this);
+
+    setTimeout(() => that.html('Load More'), 1000);
+
+    for (var i = 0; i < 10; i++) {
+        var newId = "copy_" + ct;
+        var randomText = generateRandomFancy(text);
+
+        $("#result").append(`
+            <div class="result-item">
+                <input type="text" value="${randomText}" id="${newId}" readonly>
+                <button class="copybutton" data-clipboard-target="#${newId}">Copy</button>
+            </div>
+        `);
+        ct++;
+    }
+
+    setTimeout(() => new ClipboardJS('.copybutton'), 500);
+});
+
+
+        function generateRandomFancy(text) {
+            var styles = [fullCrazy, flipText, backward, scriptify];
+            return randomElement(styles)(text);
+        }
+    </script>
+
+</body>
+</html>
