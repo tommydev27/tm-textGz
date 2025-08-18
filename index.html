@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8">
@@ -15,10 +16,12 @@
     max-width: 800px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 0.5px solid #777;
     border-radius: 5px;
-    background-color: white;
+    background-color: #222;
 }
+
+
 
 /* Input teks */
 textarea {
@@ -27,7 +30,7 @@ textarea {
     padding: 0px;
     font-size: 15px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 0.5px solid #777;
     border-radius: 5px;
 }
 
@@ -38,31 +41,31 @@ button {
     font-size: 16px;
     margin-top: 0px;
     cursor: pointer;
-    background-color: #26a9a3;
+    background: #444;
     color: white;
     border: none;
     border-radius: 5px;
 }
 
 button:hover {
-    background-color: #0c6f6b;
+    background-color: #333;
 }
 
 #result {
     width: 100%;
     height: 435px;
-    border: 1px solid #ccc;
+    border: 0.5px solid #777;
     border-radius: 5px;
     margin-top: -10px;
     padding: 10px;
     overflow-y: auto;
-    background: white;
+    background: #444;
     box-sizing: border-box;
 }
 
 .copybutton {
     width: 60px;
-    background-color: #26a9a3;
+    background-color: #222;
     color: white;
     border: none;
     cursor: pointer;
@@ -77,14 +80,14 @@ button:hover {
 /* Hover effect */
 .copybutton:hover {
     /* Hover Effect */
-        background: linear-gradient(45deg, red, blue);
+        background: linear-gradient(45deg, #a10101);
         color: white;
         box-shadow: none;
     }
 
     /* Active (Clicked) State */
     .group a:active {
-        background: linear-gradient(45deg, red, blue);
+        background: linear-gradient(45deg, #a10101);
         color: white;
         box-shadow: none;
     }
@@ -120,14 +123,14 @@ button:hover {
 
 .loadmore:hover {
     /* Hover Effect */
-        background: linear-gradient(45deg, red, blue);
+        background: linear-gradient(45deg, #a10101);
         color: white;
         box-shadow: none;
     }
 
     /* Active (Clicked) State */
     .group a:active {
-        background: linear-gradient(45deg, red, blue);
+        background: linear-gradient(45deg, #a10101);
         color: white;
         box-shadow: none;
     }
@@ -142,7 +145,7 @@ button:hover {
     width: 100%;
     height: 100%;
     margin-top: center;
-    background: white;
+    background: #444;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,27 +161,27 @@ button:hover {
     }
 }
 
-.loader {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 5px solid rgb(175,220,227);
-    border-top: 5px solid #fff;
-    animation: spin 0.55s linear infinite;
-}
-
-/* Animasi putaran */
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
-}
    .fixed {
     position: fixed;
     top:0; left:0;
     width: 100%; 
     z-index:99; }
+    
+    header{padding:5px 0px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center; font-family:Normal; margin-bottom: 0px;}
+    header h1{font-size:16px;margin:0;font-weight:700; color:#fff; }
+    header .badge{font-size:11px;color:#02c302; background:#0a0a0a;border:1px solid #123a18;padding:2px 6px;border-radius:999px}
+    
+#result input {
+  color: #00e439 !important;
+  background: #111;
+  border: none;
+  font-weight: bold !important;
+}
+
+
+
   </style>
+  
   <script>
  $(window).scroll(function(){
   var sticky = $('.fancytext'),
@@ -186,22 +189,25 @@ button:hover {
   if (scroll >= 100) sticky.addClass('fixed');
   else sticky.removeClass('fixed');
 });
+
   </script>
 </head>
 <body>
     <body>
-        <div id="loading-screen">
-          <div class="loader"></div>
-            </div>
+
 
 <div class="container1">
-      <h1 style=" font-size: 18px; color: #26a9a3; ">Buat Text unik creatify secara acak </h1>
-            <p style=" font-size: 15.55px; color: #26a9a3; margin-top: -10px; ">tulis text klik loadplay secara berulang ↺</p>
+     <header>
+    <h1>Catatan</h1>
+    <span class="badge">font • icon • unicode character</span>
+  </header>
+            <p style=" font-size: 12px; color: #fff; margin-top: 0px; ">tulis text klik  secara berulang ↺</p>
 
-            <textarea type="text" class="form-control fancytext" style="width:100%;  background-color:#fff; color:#333" required="required" name="text" placeholder="Tulis Text.." value=""></textarea>
+            <textarea type="text" class="form-control fancytext" style="width:100%;  background-color:#333; color:#fff" required="required" name="text" placeholder="Tulis Text.." value=""></textarea>
             
 <br />
 <div id="result">     <!-- Font 1 -->
+
     <div class="input-group mb-3">
         <input type="text" class="form-control text-1" value="ꕤϳ๏ʂɧ︢ɛᴘɩɴ乀ꕺノ＊＿﹅ 乀ꕺノ" id="copy_0" readonly>
         <div class="input-group-append">
@@ -272,7 +278,7 @@ button:hover {
 ＯＫＥ ＧＡＳＳＳ．．！！！" id="copy_87" readonly="readonly"><div class="input-group-append"><span class="input-group-text copybutton" style="cursor:pointer;" data-clipboard-action="copy" data-clipboard-target="#copy_87">💾</span></div></div><div class="input-group mb-3"><input type="text" class="form-control text-89" value="🪶ℳ𝓎 𝓁𝒾𝒻ℯ 𝒹𝒾𝒻𝒻ℯ𝓇ℯ𝓃𝓉 ____________
 🎱➦➲╰─────────╮🖋️" id="copy_88" readonly="readonly"><div class="input-group-append"><span class="input-group-text copybutton" style="cursor:pointer;" data-clipboard-action="copy" data-clipboard-target="#copy_88">💾</span></div></div> <div class="input-group mb-3"><input type="text" class="form-control text-89" value="🐞 ⋆ 🐾  🎀  𝒫𝓇𝑒𝓋𝒾𝑒𝓌 𝒯𝑒𝓍𝓉  🎀  🐾 ⋆ 🐞" id="copy_88" readonly="readonly"><div class="input-group-append"><span class="input-group-text copybutton" style="cursor:pointer;" data-clipboard-action="copy" data-clipboard-target="#copy_88">💾</span></div></div></div>
 <center>
-<button class="btn btn-primary loadmore" style="font-weight: bold; background-color: #26a9a3; border: none;">LOADPLAY</button>
+<button class="btn btn-primary loadmore" style="font-weight: bold; background-color: #620202; border: 0.5px solid #777;">main</button>
 </center>
 
 <hr/>
@@ -822,20 +828,72 @@ function generateFancy(txt) {
            //$("#result").html(fancyText); 
 }
  
- $(".loadmore").click(function(){
+ function smoothScrollToBottom(containerId, step = 10, delay = 5) {
+    var el = $(containerId);
+    var target = el[0].scrollHeight;
+    var current = el.scrollTop();
+
+    function scrollStep() {
+        if (current < target) {
+            current += step;
+            if (current > target) current = target;
+            el.scrollTop(current);
+            setTimeout(scrollStep, delay);
+        }
+    }
+    scrollStep();
+}
+
+var autoScrollTimer;
+
+function smoothScrollToBottom(containerId, step = 10, delay = 5) {
+  var el = $(containerId);
+  var target = el[0].scrollHeight;
+  var current = el.scrollTop();
+
+  function scrollStep() {
+    if (current < target) {
+      current += step;
+      if (current > target) current = target;
+      el.scrollTop(current);
+      autoScrollTimer = setTimeout(scrollStep, delay);
+    }
+  }
+  scrollStep();
+
+  // stop otomatis kalau user geser dengan jari/mouse
+  el.one("touchstart wheel mousedown", function() {
+    clearTimeout(autoScrollTimer);
+  });
+}
+
+$(".loadmore").click(function(){
    $(this).html('Loading Tommy web V0.1.0...');
-    var text = $.trim($(".fancytext").val());
+   var text = $.trim($(".fancytext").val());
    if(text=='') {
      text = 'Tommy web V0.1.0';
    } 
    var that = $(this);
-   var intvl = setInterval(function(){  that.html('SCROLL ⇅ LOAD ULANG');clearInterval(intvl); }, 1000);
-   for(var i=1;i<=10;i++){
-    fancyText  =  '<div class="input-group mb-3"><input type="text" class="form-control" value="'+crazyWithFlourishOrSymbols(text)+'" id="copy_'+ct+'" readonly="readonly"><div class="input-group-append"><span class="input-group-text copybutton" style="cursor:pointer;" data-clipboard-action="copy" data-clipboard-target="#copy_'+ct+'">💾</span></div></div>';
+   setTimeout(function(){  
+       that.html('scroll atau buat Ulang');
+   }, 1000);
+
+   for(var i=1;i<=8;i++){
+      var fancyText  =  
+        '<div class="input-group mb-3">' +
+        '<input type="text" class="form-control" value="'+crazyWithFlourishOrSymbols(text)+'" id="copy_'+ct+'" readonly="readonly">' +
+        '<div class="input-group-append">' +
+        '<span class="input-group-text copybutton" style="cursor:pointer;" data-clipboard-action="copy" data-clipboard-target="#copy_'+ct+'">💾</span>' +
+        '</div></div>';
+
       ct++;
-    $("#result").append(fancyText);
-    }
- });
+      $("#result").append(fancyText);
+   }
+
+   // 🔽 scroll halus (jalan pelan2, stop kalau user geser manual)
+   smoothScrollToBottom("#result", 1, 3); 
+});
+
 
 });
 </script>
